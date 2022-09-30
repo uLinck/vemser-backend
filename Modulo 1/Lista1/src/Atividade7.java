@@ -12,7 +12,7 @@ public class Atividade7 {
                 "\n\"KLMP\" = R$ 3,20" +
                 "\n\"QRST\" = R$ 2,50");
 
-        String tabela = scan.nextLine();
+        String tabela = scan.nextLine().toUpperCase();
 
         System.out.println("Qual a quantidade que deseja comprar?");
         int quantidade = scan.nextInt();
