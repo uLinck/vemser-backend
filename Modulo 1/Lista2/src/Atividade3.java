@@ -19,7 +19,7 @@ public class Atividade3 {
 
 
 
-        while(true) {
+        while(!nome.equals("sair")) {
 
             System.out.println("\nInforme os dados do " +  (quantidade + 1) +  "°" + " jogador:");
 
