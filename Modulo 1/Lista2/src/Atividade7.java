@@ -6,8 +6,6 @@ public class Atividade7 {
 
         Scanner scan = new Scanner(System.in);
 
-        int[][] array = new int[10][3];
-
         double[] mercadoMaisBaratoPorProduto = new double[10];
         double valorMenor = 0;
 

@@ -6,7 +6,6 @@ public class Atividade4 {
 
         Scanner scan = new Scanner(System.in);
 
-        int valor = 0;
         int i = 0;
 
 
