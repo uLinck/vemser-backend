@@ -38,8 +38,6 @@ public class Atividade8 {
 
     }
 
-            Long asd = 100505l;
-
 
 
 }
