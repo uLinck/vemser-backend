@@ -4,7 +4,7 @@ public class Atividade8 {
 
     public static void main(String[] args) {
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         int valor = 0;
         int valorIgual = 0;
@@ -15,7 +15,7 @@ public class Atividade8 {
         int [] array = { 3, 3, 3, 2, 5, 6, 8, 8, 9, 10 };
 
         System.out.println("Digite o valor: ");
-        valor = entrada.nextInt();
+        valor = scan.nextInt();
 
 
         for(int i = 0; i < array.length; i++) {
@@ -32,10 +32,14 @@ public class Atividade8 {
             }
         }
 
-        System.out.println("Quantidade de numeros iguais ao valor informado: " + valorIgual
-                + "Quantidade numeros menores ao valor informado: " + valorMenor
-                + "Quantidade de numeros maiores ao valor informado: " + valorMaior);
+        System.out.println("\nQuantidade de numeros iguais ao valor informado: " + valorIgual
+                + "\nQuantidade numeros menores ao valor informado: " + valorMenor
+                + "\nQuantidade de numeros maiores ao valor informado: " + valorMaior);
 
     }
+
+            Long asd = 100505l;
+
+
 
 }
