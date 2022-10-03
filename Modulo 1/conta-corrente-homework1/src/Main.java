@@ -110,7 +110,7 @@ public class Main {
         contaCliente2.agencia = 3261;
         contaCliente2.saldo = 200.00;
         contaCliente2.chequeEspecial = 700.00;
-// ----------------------------------------------
+// -----------------------------------------------
         System.out.println("\n------------------------------");
 
         System.out.println("\nImprimindo dados da conta Cliente1\n");
