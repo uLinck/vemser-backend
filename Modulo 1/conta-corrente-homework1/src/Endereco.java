@@ -9,7 +9,7 @@ public class Endereco {
     public String estado;
     public String pais;
 
-    public void imprimirEndereço() {
+    public void imprimirEndereco() {
 
         System.out.println("País: " + pais
                 + "\nEstado: " + estado
