@@ -35,7 +35,7 @@ public class Cliente {
             if(enderecos[i] != null) {
 
                 System.out.println("\nInformações do " + (i + 1)+ "° endereço:");
-                enderecos[i].imprimirEndereço();
+                enderecos[i].imprimirEndereco();
 
 
             }
