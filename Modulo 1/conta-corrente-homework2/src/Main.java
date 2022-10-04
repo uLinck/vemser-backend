@@ -33,6 +33,9 @@ public class Main {
         ContaCorrente contaCliente1 = new ContaCorrente(cliente1, "537289-1", "1579", 500, 1000);
         ContaCorrente contaCliente2 = new ContaCorrente(cliente2, "842746-2", "3261", 200, 700);
 
+        ContaPoupanca poupancaCliente1 = new ContaPoupanca(cliente1, "537009-1", "1111", 100);
+        ContaPoupanca poupancaCliente2 = new ContaPoupanca(cliente2, "842006-2", "2222", 100);
+
 // -----------------------------------------------
         System.out.println("\n------------------------------");
 
@@ -62,5 +65,12 @@ public class Main {
 
         System.out.println("\n------------------------------\n");
 
+        // teste feito apenas com um cliente pois seguem o mesmo modelo.
+
+        poupancaCliente1.imprimir();
+        poupancaCliente1.creditarTaxa();
+        poupancaCliente1.imprimir();
+
+        System.out.println("\n------------------------------\n");
     }
 }
