@@ -1,4 +1,4 @@
- abstract class Conta {
+ abstract class Conta implements Movimentacao{
 
     private Cliente cliente;
     private String numeroConta;
@@ -48,4 +48,35 @@
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+     @Override
+     public boolean sacar(double valor){
+         if(valor > 0 && valor <= getSaldo()){
+             setSaldo((getSaldo() - valor));
+             return true;
+         } else {
+             return false;
+         }
+     }
+
+     @Override
+     public boolean depositar(double valor) {
+         if(valor > 0){
+             setSaldo(getSaldo() + valor);
+             return true;
+         } else {
+             return false;
+         }
+     }
+
+     @Override
+     public boolean transferir(ContaCorrente conta, double valor) {
+         if (sacar(valor)){
+             conta.depositar(valor);
+             return true;
+         } else {
+             return false;
+         }
+     }
+
 }
