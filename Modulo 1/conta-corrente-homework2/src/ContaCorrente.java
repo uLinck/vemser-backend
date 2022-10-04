@@ -1,4 +1,4 @@
-public class ContaCorrente extends Conta implements Movimentacao, impressao {
+public class ContaCorrente extends Conta implements Movimentacao, Impressao {
 
 
     private double chequeEspecial;
@@ -67,12 +67,6 @@ public class ContaCorrente extends Conta implements Movimentacao, impressao {
         }
 
     }
-
-    //contaBruno.transferir(contaLinck, 15)
-    //contaBruno vai ter -15 pila
-    //contaLinck vai receber mais 15 pila
-    //o this nessa situação, vai estar se referindo à contaBruno
-    // pq é ele que vem antes do .transferir
 
     @Override
     public boolean transferir(ContaCorrente conta, double valor) {
