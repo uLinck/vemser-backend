@@ -69,7 +69,7 @@ public class ContaCorrente extends Conta implements Movimentacao, Impressao {
     }
 
     @Override
-    public boolean transferir(ContaCorrente conta, double valor) {
+    public boolean transferir(Conta conta, double valor) {
 
         if(conta.getSaldo() >= valor && valor > 0) {
 
@@ -89,7 +89,6 @@ public class ContaCorrente extends Conta implements Movimentacao, Impressao {
     public void imprimir() {
 
         System.out.println("\nInformações da Conta Corrente:"
-                + "\nCliente: " + this.getCliente()
                 + "\nNúmero: " + this.getNumeroConta()
                 + "\nAgência: " + this.getAgencia()
                 + "\nSaldo: R$" + this.getSaldo()
