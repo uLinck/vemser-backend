@@ -13,39 +13,34 @@ public class Cliente {
     }
     public void imprimirContatos() {
 
-        System.out.println("\nContatos de " + getNome() + ": ");
+        System.out.println("\nContatos de " + this.getNome() + ": ");
 
-        for(int i = 0; i < getContatos().length; i++) {
+        if(contatos != null) {
 
-            if(getContatos()[i] != null) {
+            for (int i = 0; i < this.getContatos().length; i++) {
 
-                System.out.println("\nInformações do " + (i + 1)+ "° contato:");
-                getContatos()[i].imprimirContato();
-
-
+                if (this.getContatos()[i] != null) {
+                    System.out.println("\nInformações do " + (i + 1) + "° contato:");
+                    this.getContatos()[i].imprimirContato();
+                }
             }
-
         }
-
-
     }
 
     public void imprimirEnderecos() {
 
-        System.out.println("\nEndereços de " + getNome() + ": ");
+        System.out.println("\nEndereços de " + this.getNome() + ": ");
 
-        for(int i = 0; i < getEnderecos().length; i++) {
+        if(enderecos != null) {
 
+            for (int i = 0; i < this.getEnderecos().length; i++) {
 
-            if(getEnderecos()[i] != null) {
-
-                System.out.println("\nInformações do " + (i + 1)+ "° endereço:");
-                getEnderecos()[i].imprimirEndereco();
-
+                if (this.getEnderecos()[i] != null) {
+                    System.out.println("\nInformações do " + (i + 1) + "° endereço:");
+                    this.getEnderecos()[i].imprimirEndereco();
+                }
             }
-
         }
-
     }
 
     public void imprimirCliente() {
