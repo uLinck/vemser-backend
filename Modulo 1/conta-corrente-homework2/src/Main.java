@@ -47,13 +47,15 @@ public class Main {
 
         System.out.println("\n------------------------------\n");
 
-        System.out.println("\nImprimindo dados da conta Cliente2\n");
-        cliente2.imprimirCliente();
-        cliente2.imprimirContatos();
-        cliente2.imprimirEnderecos();
-        contaCliente2.imprimir();
-
-        System.out.println("\n------------------------------\n");
+//        testes dos dados do Cliente2 que comentei pois não é necessário.
+//
+//        System.out.println("\nImprimindo dados da conta Cliente2\n");
+//        cliente2.imprimirCliente();
+//        cliente2.imprimirContatos();
+//        cliente2.imprimirEnderecos();
+//        contaCliente2.imprimir();
+//
+//        System.out.println("\n------------------------------\n");
 
         System.out.println("\nTeste de transferência:");
 
@@ -66,6 +68,8 @@ public class Main {
         System.out.println("\n------------------------------\n");
 
         // teste feito apenas com um cliente pois seguem o mesmo modelo.
+
+        System.out.println("Teste da conta poupança:\n");
 
         poupancaCliente1.imprimir();
         poupancaCliente1.creditarTaxa();
