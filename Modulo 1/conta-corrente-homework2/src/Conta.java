@@ -70,7 +70,7 @@
      }
 
      @Override
-     public boolean transferir(ContaCorrente conta, double valor) {
+     public boolean transferir(Conta conta, double valor) {
          if (sacar(valor)){
              conta.depositar(valor);
              return true;
