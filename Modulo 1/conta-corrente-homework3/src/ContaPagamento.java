@@ -8,17 +8,20 @@ public class ContaPagamento extends Conta implements Impressao {
     }
 
     public boolean sacar(double valor) {
-        if (valor > 0 && valor <= getSaldo()) {
-            setSaldo((getSaldo() - valor));
-
-            if (getSaldo() >= TAXA_SAQUE) {
-                setSaldo((getSaldo() - TAXA_SAQUE));
-            } else {
-                System.out.println("Saque não efetuado pois o valor atual da conta é menor que a taxa de saque.");
-                return false;
-            }
+        if (valor > 0 && (valor + TAXA_SAQUE) <= getSaldo()) {
+            setSaldo((getSaldo() - (valor + TAXA_SAQUE)));
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
+    @Override
+    public boolean transferir(Conta conta, double valor) {
+        if ((valor) <= getSaldo()){
+            setSaldo(getSaldo() - valor);
+            conta.depositar(valor);
             return true;
         } else {
             return false;

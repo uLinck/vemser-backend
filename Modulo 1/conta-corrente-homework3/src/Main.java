@@ -62,8 +62,8 @@ public class Main {
         System.out.println("\nTeste de saque da conta pagamento do Cliente 1.");
 
         pagamentoContaCliente1.imprimir();
-//        pagamentoContaCliente1.sacar(300); // saque não efetuado
-        pagamentoContaCliente1.sacar(50);
+        pagamentoContaCliente1.sacar(300); // saque não efetuado
+//        pagamentoContaCliente1.sacar(50);
         pagamentoContaCliente1.imprimir();
         System.out.println("------------------------------");
         System.out.println("\nTeste de saque da conta poupança do cliente 2.");
@@ -94,7 +94,11 @@ public class Main {
         System.out.println("Conta poupança cliente2");
         poupancaCliente2.imprimir();
 
-
+        System.out.println("\n------------------------------\n");
+        System.out.println("Teste de transferência da conta pagamento");
+        pagamentoContaCliente1.imprimir();
+        pagamentoContaCliente1.transferir(contaCliente1, 50);
+        pagamentoContaCliente1.imprimir();
 
         System.out.println("\n------------------------------\n");
     }
