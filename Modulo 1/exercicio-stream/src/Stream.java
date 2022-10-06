@@ -79,20 +79,20 @@ public class Stream {
 
         //9- com o mapa da 8, retornar o nome com o id=2
         System.out.println("\nretornar o nome armazenado no id=2\n");
-        idsENomes.entrySet().stream()
-               .filter(value -> value.getKey() == 2)
-               .forEach(value -> System.out.println(value.getValue()));
+        System.out.println(idsENomes.get(2));
+//               .filter(value -> value.getKey() == 2)
+//               .forEach(value -> System.out.println(value.getValue()));
 
         //10- verificar se tem alguém que contenha o nome "Paulo" (containsignorecase) na lista e retornar o primeiro elemento que encontrar (findFirst).
         //    Imprimir o nome e salário dessa pessoa
 
         System.out.println("\nImprimir o nome e salário dessa pessoa\n");
 
-        Pessoa possivelPessoa  = lista.stream()
-                .filter(pessoa -> pessoa.getNome().equalsIgnoreCase("Paulo"))
-                .findFirst()
-                .orElse(new Pessoa(0, "Nenhum", 0, "Nenhum"));
-        System.out.println("Nome: " + possivelPessoa.getNome() + "\nSalário: R$" + possivelPessoa.getSalario());
+       Optional<Pessoa> possivelPessoa  = lista.stream()
+               .filter(pessoa -> pessoa.getNome().toLowerCase().contains("Paulo".toLowerCase()))
+               .findFirst();
+        System.out.println("Nome: " + possivelPessoa.get().getNome() + "\nSalário: R$" + possivelPessoa.get().getSalario());
+
 
     }
 
