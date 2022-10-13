@@ -1,0 +1,28 @@
+-- DECRESCENTE 
+SELECT * FROM VEM_SER.PAIS 
+	ORDER BY NOME DESC;
+	
+-- Mostra os logradouros que começam com A maiusculo 
+SELECT LOGRADOURO, CEP FROM VEM_SER.ENDERECO  
+	WHERE UPPER(LOGRADOURO) LIKE 'A%';
+
+-- Mosta os ceps que terminam com 0
+SELECT * FROM VEM_SER.ENDERECO 
+	WHERE CEP LIKE '%0';
+
+--Mosta os números que estão entre 1 e 100
+SELECT * FROM VEM_SER.ENDERECO e
+	WHERE NUMERO BETWEEN 1 AND 100;
+
+-- Mostra os logradouros que começam com RUA  em ordem DECRESCENTE 
+SELECT * FROM VEM_SER.ENDERECO 
+	WHERE UPPER(LOGRADOURO) LIKE 'RUA%' 
+	ORDER BY CEP DESC;
+
+-- Mostra quandos ID_ENDERECO eu tenho na tabela endereço 
+SELECT COUNT (ID_ENDERECO)
+	FROM VEM_SER.ENDERECO;
+	
+-- Mostra quantos ENDERECOS tem PELO ID DA CIDADE
+SELECT COUNT (ID_ENDERECO) FROM VEM_SER.ENDERECO 
+	GROUP BY ID_CIDADE;
