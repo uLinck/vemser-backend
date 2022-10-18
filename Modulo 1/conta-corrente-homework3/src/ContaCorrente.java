@@ -9,11 +9,14 @@ public class ContaCorrente extends Conta implements Movimentacao, Impressao {
         this.chequeEspecial = chequeEspecial;
     }
 
+
     public ContaCorrente(Cliente cliente, String numeroConta, String agencia, double saldo, double chequeEspecial) {
         super(cliente, numeroConta, agencia, saldo);
         this.chequeEspecial = chequeEspecial;
 
     }
+
+    public ContaCorrente() {}
 
     public double retornarSaldoComChequeEspecial() {
 
