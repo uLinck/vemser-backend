@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "83dd5b92-6e05-4be9-a4f7-1ed74d62d5b4",
+		"name": "PessoaAPI Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23920849"
+	},
+	"item": [
+		{
+			"name": "GET NORMAL",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/contato",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contato"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET POR ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/contato/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contato",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/contato/{idPessoa}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"51991990700\",\r\n        \"descricao\": \"bah chama no zap\"\r\n   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/contato/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contato",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"51991990700\",\r\n    \"descricao\": \"bah não chamou no zap\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/contato/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contato",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NORMAL Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/contato/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contato",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
