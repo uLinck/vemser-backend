@@ -2,15 +2,17 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ContatoService {
 
     private ContatoRepository contatoRepository;
 
-    public ContatoService(){
-        contatoRepository = new ContatoRepository();
+    public ContatoService(ContatoRepository contatoRepository){
+        this.contatoRepository = contatoRepository;
     }
 
     public Contato create(Integer idPessoa, Contato contato){
@@ -21,8 +23,7 @@ public class ContatoService {
         return contatoRepository.list();
     }
 
-    public Contato update(Integer idContato,
-                          Contato contatoAtualizar) throws Exception {
+    public Contato update(Integer idContato, Contato contatoAtualizar) throws Exception {
         return contatoRepository.update(idContato, contatoAtualizar);
     }
 

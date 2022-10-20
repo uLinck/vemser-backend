@@ -12,8 +12,8 @@ public class ContatoController {
 
     private ContatoService contatoService;
 
-    public ContatoController() {
-        contatoService = new ContatoService();
+    public ContatoController(ContatoService contatoService) {
+        this.contatoService = contatoService;
     }
 
     @GetMapping()

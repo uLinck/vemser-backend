@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "83dd5b92-6e05-4be9-a4f7-1ed74d62d5b4",
+		"name": "PessoaAPI Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23920849"
+	},
+	"item": [
+		{
+			"name": "/enderecos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/enderecos",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"enderecos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enderecos/{idEndereco}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/enderecos/",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"enderecos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enderecos/pessoa/{idPessoa}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/contato/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contato",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/enderecos/{idPessoa}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"tipo\": \"COMERCIAL\",\r\n        \"logradouro\": \"Bloco B\",\r\n        \"numero\": 356,\r\n        \"complemento\": \"Apartamento\",\r\n        \"cep\": \"94175-460\",\r\n        \"cidade\": \"Porto Alegre\",\r\n        \"estado\": \"RS\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/enderecos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"enderecos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/enderecos/{idPessoa}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"idEndereco\": 1,\r\n        \"idPessoa\": 1,\r\n        \"tipo\": \"COMERCIAL\",\r\n        \"logradouro\": \"Bloco A\",\r\n        \"numero\": 356,\r\n        \"complemento\": \"Casa\",\r\n        \"cep\": \"94175-460\",\r\n        \"cidade\": \"Gravataí\",\r\n        \"estado\": \"RS\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/enderecos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"enderecos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NORMAL Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/enderecos/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"enderecos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
