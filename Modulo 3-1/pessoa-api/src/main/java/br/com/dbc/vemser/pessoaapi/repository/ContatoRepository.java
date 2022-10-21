@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.repository;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
+import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -31,27 +32,6 @@ public class ContatoRepository {
 
     public List<Contato> list() {
         return listaContatos;
-    }
-
-    public Contato update(Integer id,
-                          Contato contatoAtualizar) throws Exception {
-        Contato contatoRecuperada = listaContatos.stream()
-                .filter(contato -> contato.getIdContato().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Contato não encontrado"));
-        contatoRecuperada.setTipoContato(contatoAtualizar.getTipoContato());
-        contatoRecuperada.setNumero(contatoAtualizar.getNumero());
-        contatoRecuperada.setDescricao(contatoAtualizar.getDescricao());
-        return contatoRecuperada;
-
-    }
-
-    public void delete(Integer idContato) throws Exception {
-        Contato contatoRecuperado = listaContatos.stream()
-                .filter(contato -> contato.getIdContato().equals(idContato))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Contato não encontrado"));
-        listaContatos.remove(contatoRecuperado);
     }
 
     public List<Contato> listByIdPessoa(Integer idPessoa) {

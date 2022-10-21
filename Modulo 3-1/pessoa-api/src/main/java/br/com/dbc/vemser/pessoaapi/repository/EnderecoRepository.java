@@ -31,11 +31,8 @@ public class EnderecoRepository {
     listaEnderecos.add(endereco);
     return endereco;
     }
-
     public List<Endereco> list() {
         return listaEnderecos;
 }
-    public void delete(Integer idEndereco) {
-    listaEnderecos.remove(idEndereco);
-    }
+
 }
