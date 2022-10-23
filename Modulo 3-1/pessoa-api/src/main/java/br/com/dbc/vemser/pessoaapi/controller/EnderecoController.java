@@ -1,8 +1,11 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
+import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Endereco;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,20 +39,20 @@ public class EnderecoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public Endereco create (@Valid @PathVariable("idPessoa") Integer idPessoa,
-                            @Valid @RequestBody Endereco endereco) throws RegraDeNegocioException {
+    public ResponseEntity<EnderecoDTO> create (@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                  @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
 
             if (enderecoService.verifyPessoa(idPessoa)) {
-                return enderecoService.create(idPessoa, endereco);
+                return ResponseEntity.ok(enderecoService.create(idPessoa, endereco));
             } else {
                 throw new RegraDeNegocioException("Pessoa não encontrada");
             }
     }
 
     @PutMapping("/{idEndereco}")
-    public Endereco update(@Valid @PathVariable("idEndereco") Integer idEndereco,
-                           @Valid @RequestBody Endereco enderecoAtualizar) throws RegraDeNegocioException {
-        return enderecoService.update(idEndereco, enderecoAtualizar);
+    public ResponseEntity<EnderecoDTO> update(@Valid @PathVariable("idEndereco") Integer idEndereco,
+                           @Valid @RequestBody EnderecoCreateDTO enderecoAtualizar) throws RegraDeNegocioException {
+        return ResponseEntity.ok(enderecoService.update(idEndereco, enderecoAtualizar));
     }
 
     @DeleteMapping("/{idEndereco}")

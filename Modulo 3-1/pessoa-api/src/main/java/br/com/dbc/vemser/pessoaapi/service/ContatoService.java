@@ -1,35 +1,46 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
+import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
+@Slf4j
 @Service
 public class ContatoService {
 
-    private ContatoRepository contatoRepository;
+    private final ContatoRepository contatoRepository;
 
-    private PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository;
 
-    public ContatoService(ContatoRepository contatoRepository, PessoaRepository pessoaRepository){
-        this.contatoRepository = contatoRepository;
-        this.pessoaRepository = pessoaRepository;
-    }
+    private final ObjectMapper objectMapper;
 
-    public Contato create(Integer idPessoa, Contato contato){
-        return contatoRepository.create(idPessoa, contato);
+
+    public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato){
+        Contato p = objectMapper.convertValue(contato, Contato.class);
+        log.info("Criando contato...");
+        Contato contatoCriado = contatoRepository.create(idPessoa, p);
+        log.info("Contato criado com sucesso!");
+        return objectMapper.convertValue(contatoCriado, ContatoDTO.class);
+
     }
 
     public List<Contato> list(){
         return contatoRepository.list();
     }
 
-    public Contato update(Integer idContato, Contato contatoAtualizar) throws RegraDeNegocioException {
+    public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
+        log.info("Atualizando contato...");
         Contato contatoRecuperado = list().stream()
                 .filter(contato -> contato.getIdContato().equals(idContato))
                 .findFirst()
@@ -37,15 +48,18 @@ public class ContatoService {
         contatoRecuperado.setTipoContato(contatoAtualizar.getTipoContato());
         contatoRecuperado.setNumero(contatoAtualizar.getNumero());
         contatoRecuperado.setDescricao(contatoAtualizar.getDescricao());
-        return contatoRecuperado;
+        log.info("Contato atualizado com sucesso!");
+        return objectMapper.convertValue(contatoRecuperado, ContatoDTO.class);
     }
 
     public void delete(Integer idContato) throws RegraDeNegocioException {
+        log.info("Deletando contato...");
         Contato contatoRecuperado = list().stream()
                 .filter(contato -> contato.getIdContato().equals(idContato))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
         list().remove(contatoRecuperado);
+        log.info("Contato Deletado com sucesso!");
     }
 
     public List<Contato> listByIdPessoa(Integer idPessoa) {

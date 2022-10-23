@@ -1,5 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
+import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
@@ -25,7 +27,7 @@ public class PessoaController {
     }
 
     @PostMapping // localhost:8080/pessoa
-    public Pessoa create(@Valid @RequestBody Pessoa pessoa) throws RegraDeNegocioException {
+    public PessoaDTO create(@Valid @RequestBody PessoaCreateDTO pessoa) {
         return pessoaService.create(pessoa);
     }
 
@@ -40,8 +42,8 @@ public class PessoaController {
     }
 
     @PutMapping("/{idPessoa}") // localhost:8080/pessoa/1000
-    public Pessoa update(@Valid @PathVariable("idPessoa") Integer id,
-                        @Valid @RequestBody Pessoa pessoaAtualizar) throws RegraDeNegocioException {
+    public PessoaDTO update(@Valid @PathVariable("idPessoa") Integer id,
+                        @Valid @RequestBody PessoaDTO pessoaAtualizar) throws RegraDeNegocioException {
         return pessoaService.update(id, pessoaAtualizar);
     }
 

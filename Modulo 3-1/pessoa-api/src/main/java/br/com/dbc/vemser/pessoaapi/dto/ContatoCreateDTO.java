@@ -1,18 +1,15 @@
-package br.com.dbc.vemser.pessoaapi.entity;
+package br.com.dbc.vemser.pessoaapi.dto;
 
-import lombok.*;
-import org.apache.commons.lang3.builder.ToStringExclude;
+import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
+import lombok.Data;
+
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Data
-public class Contato {
-    @NotNull
-    @ToStringExclude
-    private Integer idContato;
+public class ContatoCreateDTO {
     @NotNull
     private Integer idPessoa;
     @NotNull

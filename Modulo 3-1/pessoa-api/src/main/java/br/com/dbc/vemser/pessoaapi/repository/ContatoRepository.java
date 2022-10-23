@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.repository;
 
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
