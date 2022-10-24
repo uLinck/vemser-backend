@@ -1,9 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.repository;
 
-import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
-import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -24,7 +22,6 @@ public class ContatoRepository {
     }
 
     public Contato create(Integer idPessoa, Contato contato) {
-
         contato.setIdContato(COUNTER.incrementAndGet());
         contato.setIdPessoa(idPessoa);
         listaContatos.add(contato);

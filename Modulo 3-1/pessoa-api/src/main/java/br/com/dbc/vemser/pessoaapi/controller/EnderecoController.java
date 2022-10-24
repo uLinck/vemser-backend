@@ -39,19 +39,18 @@ public class EnderecoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<EnderecoDTO> create (@Valid @PathVariable("idPessoa") Integer idPessoa,
-                                  @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
-
-            if (enderecoService.verifyPessoa(idPessoa)) {
-                return ResponseEntity.ok(enderecoService.create(idPessoa, endereco));
-            } else {
-                throw new RegraDeNegocioException("Pessoa não encontrada");
-            }
+    public ResponseEntity<EnderecoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                              @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+        if (enderecoService.verifyPessoa(idPessoa)) {
+            return ResponseEntity.ok(enderecoService.create(idPessoa, endereco));
+        } else {
+            throw new RegraDeNegocioException("Pessoa não encontrada");
+        }
     }
 
     @PutMapping("/{idEndereco}")
     public ResponseEntity<EnderecoDTO> update(@Valid @PathVariable("idEndereco") Integer idEndereco,
-                           @Valid @RequestBody EnderecoCreateDTO enderecoAtualizar) throws RegraDeNegocioException {
+                                              @Valid @RequestBody EnderecoCreateDTO enderecoAtualizar) throws RegraDeNegocioException {
         return ResponseEntity.ok(enderecoService.update(idEndereco, enderecoAtualizar));
     }
 

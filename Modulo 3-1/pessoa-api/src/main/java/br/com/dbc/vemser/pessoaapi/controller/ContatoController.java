@@ -5,7 +5,6 @@ import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ import java.util.List;
 @RequestMapping("/contato") // localhost:8080/contato
 @Validated
 public class ContatoController {
-
 
 
     private ContatoService contatoService;
@@ -37,22 +35,24 @@ public class ContatoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<ContatoDTO> create (@Valid @PathVariable("idPessoa") Integer idPessoa,
-                              @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException {
+    public ResponseEntity<ContatoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                             @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException {
         if (contatoService.verifyPessoa(idPessoa)) {
             return ResponseEntity.ok(contatoService.create(idPessoa, contato));
         } else {
             throw new RegraDeNegocioException("Pessoa não encontrada");
         }
 
-}
-@PutMapping("/{idContato}")
+    }
+
+    @PutMapping("/{idContato}")
     public ResponseEntity<ContatoDTO> update(@PathVariable("idContato") Integer id,
-                                 @RequestBody ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
+                                             @RequestBody ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
         return ResponseEntity.ok(contatoService.update(id, contatoAtualizar));
     }
+
     @DeleteMapping("/{idContato}")
-    public void delete(@Valid @PathVariable ("idContato") Integer id) throws RegraDeNegocioException {
+    public void delete(@Valid @PathVariable("idContato") Integer id) throws RegraDeNegocioException {
         contatoService.delete(id);
     }
 

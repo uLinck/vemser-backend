@@ -26,7 +26,7 @@ public class ContatoService {
     private final ObjectMapper objectMapper;
 
 
-    public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato){
+    public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato) {
         Contato p = objectMapper.convertValue(contato, Contato.class);
         log.info("Criando contato...");
         Contato contatoCriado = contatoRepository.create(idPessoa, p);
@@ -35,16 +35,13 @@ public class ContatoService {
 
     }
 
-    public List<Contato> list(){
+    public List<Contato> list() {
         return contatoRepository.list();
     }
 
     public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
         log.info("Atualizando contato...");
-        Contato contatoRecuperado = list().stream()
-                .filter(contato -> contato.getIdContato().equals(idContato))
-                .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+        Contato contatoRecuperado = findById(idContato);
         contatoRecuperado.setTipoContato(contatoAtualizar.getTipoContato());
         contatoRecuperado.setNumero(contatoAtualizar.getNumero());
         contatoRecuperado.setDescricao(contatoAtualizar.getDescricao());
@@ -54,10 +51,7 @@ public class ContatoService {
 
     public void delete(Integer idContato) throws RegraDeNegocioException {
         log.info("Deletando contato...");
-        Contato contatoRecuperado = list().stream()
-                .filter(contato -> contato.getIdContato().equals(idContato))
-                .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+        Contato contatoRecuperado = findById(idContato);
         list().remove(contatoRecuperado);
         log.info("Contato Deletado com sucesso!");
     }
@@ -77,4 +71,12 @@ public class ContatoService {
         return pessoaRecuperada != null;
 
     }
+
+    private Contato findById(Integer idContato) throws RegraDeNegocioException {
+        return list().stream()
+                .filter(contato -> contato.getIdContato().equals(idContato))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+    }
 }
+

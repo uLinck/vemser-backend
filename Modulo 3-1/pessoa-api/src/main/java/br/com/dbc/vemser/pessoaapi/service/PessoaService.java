@@ -8,12 +8,10 @@ import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @RequiredArgsConstructor
 @Slf4j
 @Service
@@ -21,6 +19,7 @@ public class PessoaService {
 
     private final PessoaRepository pessoaRepository;
     private final ObjectMapper objectMapper;
+
     public PessoaDTO create(PessoaCreateDTO pessoa) {
         Pessoa p = objectMapper.convertValue(pessoa, Pessoa.class);
         log.info("Criando pessoa...");
@@ -29,7 +28,7 @@ public class PessoaService {
         return objectMapper.convertValue(pessoaCriada, PessoaDTO.class);
     }
 
-    public List<Pessoa> list(){
+    public List<Pessoa> list() {
         return pessoaRepository.list();
     }
 
