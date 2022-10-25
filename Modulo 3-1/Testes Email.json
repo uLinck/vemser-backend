@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "a6fd5ce1-268a-41c5-952e-925624f59f92",
+		"name": "Testes Email",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23920849"
+	},
+	"item": [
+		{
+			"name": "/enderecos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7070/enderecos",
+					"host": [
+						"localhost"
+					],
+					"port": "7070",
+					"path": [
+						"enderecos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/enderecos/{idPessoa}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Bloco V\",\r\n        \"numero\": 356,\r\n        \"complemento\": \"Casa\",\r\n        \"cep\": \"94175460\",\r\n        \"cidade\": \"Gravataí\",\r\n        \"estado\": \"RS\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7070/enderecos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "7070",
+					"path": [
+						"enderecos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/enderecos/{idEndereco}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:7070/enderecos/5",
+					"host": [
+						"localhost"
+					],
+					"port": "7070",
+					"path": [
+						"enderecos",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

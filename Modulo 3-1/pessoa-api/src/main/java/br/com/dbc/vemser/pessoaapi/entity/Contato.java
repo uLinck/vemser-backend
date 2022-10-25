@@ -10,18 +10,11 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Data
 public class Contato {
-    @NotNull
-    @ToStringExclude
+
     private Integer idContato;
-    @NotNull
     private Integer idPessoa;
-    @NotNull
     private TipoContato tipoContato;
-    @NotNull
-    @Size(max=13)
     private String numero;
-    @NotNull
-    @NotBlank
     private String descricao;
 
 }

@@ -35,13 +35,15 @@ public class ContatoService {
 
     }
 
-    public List<Contato> list() {
-        return contatoRepository.list();
+    public List<ContatoDTO> list() {
+        return contatoRepository.list().stream()
+                .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+                .toList();
     }
 
     public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
         log.info("Atualizando contato...");
-        Contato contatoRecuperado = findById(idContato);
+        ContatoDTO contatoRecuperado = findById(idContato);
         contatoRecuperado.setTipoContato(contatoAtualizar.getTipoContato());
         contatoRecuperado.setNumero(contatoAtualizar.getNumero());
         contatoRecuperado.setDescricao(contatoAtualizar.getDescricao());
@@ -51,13 +53,15 @@ public class ContatoService {
 
     public void delete(Integer idContato) throws RegraDeNegocioException {
         log.info("Deletando contato...");
-        Contato contatoRecuperado = findById(idContato);
+        ContatoDTO contatoRecuperado = findById(idContato);
         list().remove(contatoRecuperado);
         log.info("Contato Deletado com sucesso!");
     }
 
-    public List<Contato> listByIdPessoa(Integer idPessoa) {
-        return contatoRepository.listByIdPessoa(idPessoa);
+    public List<ContatoDTO> listByIdPessoa(Integer idPessoa) {
+        return contatoRepository.listByIdPessoa(idPessoa).stream()
+                .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+                .toList();
     }
 
 
@@ -72,7 +76,7 @@ public class ContatoService {
 
     }
 
-    private Contato findById(Integer idContato) throws RegraDeNegocioException {
+    private ContatoDTO findById(Integer idContato) throws RegraDeNegocioException {
         return list().stream()
                 .filter(contato -> contato.getIdContato().equals(idContato))
                 .findFirst()
