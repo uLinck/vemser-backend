@@ -18,8 +18,10 @@ public class PessoaCreateDTO {
     @Schema(description = "Data de nascimento")
     private LocalDate dataNascimento;
     @CPF
+    @Schema(description = "CPF da pessoa")
     private String cpf;
     @Email
     @NotBlank
+    @Schema(description = "Email da pessoa")
     private String email;
 }
