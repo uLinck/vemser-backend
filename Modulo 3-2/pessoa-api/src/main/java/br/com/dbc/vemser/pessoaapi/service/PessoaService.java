@@ -38,25 +38,23 @@ public class PessoaService {
 
     public PessoaDTO update(Integer id, PessoaCreateDTO pessoaAtualizar) throws RegraDeNegocioException {
         log.info("Atualizando pessoa...");
-        PessoaDTO pessoaRecuperada = list().stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
+        PessoaEntity pessoaRecuperada = findById(id);
         pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
         pessoaRecuperada.setNome(pessoaAtualizar.getNome());
         pessoaRecuperada.setDataNascimento(pessoaAtualizar.getDataNascimento());
         pessoaRecuperada.setEmail(pessoaAtualizar.getEmail());
-        emailService.sendUpdateEmail(pessoaRecuperada);
+        pessoaRepository.save(pessoaRecuperada);
+//        emailService.sendUpdateEmail(pessoaRecuperada);
         log.info("Pessoa atualizando com sucesso!");
         return objectMapper.convertValue(pessoaRecuperada, PessoaDTO.class);
     }
 
     public void delete(Integer id) throws RegraDeNegocioException {
         log.info("Deletando pessoa...");
-        PessoaDTO pessoaRecuperada = findById(id);
+        PessoaEntity pessoaRecuperada = findById(id);
         PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaRecuperada, PessoaEntity.class);
         pessoaRepository.delete(pessoaEntity);
-        emailService.sendRemoveEmail(pessoaRecuperada);
+//        emailService.sendRemoveEmail(pessoaRecuperada);
         log.info("Pessoa deletada com sucesso!");
     }
 
@@ -66,11 +64,10 @@ public class PessoaService {
 //                .toList();
 //    }
 
-    public PessoaDTO findById(Integer idPessoa) throws RegraDeNegocioException {
-        return list().stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(idPessoa))
-                .findFirst()
+    public PessoaEntity findById(Integer id) throws RegraDeNegocioException {
+        PessoaEntity pessoaEntity = pessoaRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
+        return pessoaEntity;
     }
 
 }

@@ -38,18 +38,19 @@ public class ContatoService {
 
     public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException {
         log.info("Atualizando contato...");
-        ContatoDTO contatoRecuperado = findById(idContato);
+        ContatoEntity contatoRecuperado = findById(idContato);
         contatoRecuperado.setTipoContato(contatoAtualizar.getTipoContato());
         contatoRecuperado.setNumero(contatoAtualizar.getNumero());
         contatoRecuperado.setDescricao(contatoAtualizar.getDescricao());
+        contatoRepository.save(contatoRecuperado);
         log.info("Contato atualizado com sucesso!");
         return objectMapper.convertValue(contatoRecuperado, ContatoDTO.class);
     }
 
     public void delete(Integer idContato) throws RegraDeNegocioException {
         log.info("Deletando contato...");
-        ContatoDTO contatoRecuperado = findById(idContato);
-        list().remove(contatoRecuperado);
+        ContatoEntity contatoRecuperado = findById(idContato);
+        contatoRepository.delete(contatoRecuperado);
         log.info("Contato Deletado com sucesso!");
     }
 
@@ -62,11 +63,10 @@ public class ContatoService {
 //                .collect(Collectors.toList());
 //    }
 
-    private ContatoDTO findById(Integer idContato) throws RegraDeNegocioException {
-        return list().stream()
-                .filter(contato -> contato.getIdContato().equals(idContato))
-                .findFirst()
+    private ContatoEntity findById(Integer idContato) throws RegraDeNegocioException {
+        ContatoEntity contatoEntityRecuperado = contatoRepository.findById(idContato)
                 .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+        return contatoEntityRecuperado;
     }
 }
 

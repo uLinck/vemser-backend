@@ -61,6 +61,7 @@ public class EnderecoService {
         enderecoEntityDTO.setPais(enderecoAtualizar.getPais());
         enderecoEntityDTO.setLogradouro(enderecoAtualizar.getLogradouro());
         enderecoEntityDTO.setNumero(enderecoAtualizar.getNumero());
+        enderecoRepository.save(enderecoEntityDTO);
 //        emailService.sendUpdateEnderecoEmail(pessoaDTO, enderecoEntityDTO);
         log.info("Endereço atualizado com sucesso!");
         return objectMapper.convertValue(enderecoEntityDTO, EnderecoDTO.class);

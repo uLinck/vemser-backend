@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,5 +31,7 @@ public class PessoaEntity {
     @Column(name = "EMAIL")
     private String email;
 
+
+    List<ContatoEntity> contatos;
 
 }

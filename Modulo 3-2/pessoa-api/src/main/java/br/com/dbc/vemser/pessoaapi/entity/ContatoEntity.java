@@ -17,7 +17,6 @@ public class ContatoEntity {
     @Column(name = "id_contato")
     private Integer idContato;
 
-
     @Column(name = "tipo")
     private TipoContato tipoContato; //RESIDENCIAL(1)
 
