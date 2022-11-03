@@ -51,19 +51,19 @@ public class EnderecoController {
         return enderecoService.listByIdEndereco(idEndereco);
     }
 
-//    @Operation(summary = "listar endereços pelo id da pessoa", description = "Lista todos os endereços da pessoas selecionada")
-//    @ApiResponses(
-//            value = {
-//                    @ApiResponse(responseCode = "200", description = "Retorna os endereços do id pessoas"),
-//                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-//                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-//            }
-//    )
+    @Operation(summary = "listar endereços pelo id da pessoa", description = "Lista todos os endereços da pessoas selecionada")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna os endereços do id pessoas"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
 
-//    @GetMapping("/{idPessoa}/pessoa")
-//    public List<EnderecoDTO> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
-//        return enderecoService.listByIdPessoa(idPessoa);
-//    }
+    @GetMapping("/{idPessoa}/pessoa")
+    public List<EnderecoDTO> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
+        return enderecoService.listByIdPessoa(idPessoa);
+    }
 
     @Operation(summary = "adicionar endereço", description = "Adiciona um endereço no banco")
     @ApiResponses(

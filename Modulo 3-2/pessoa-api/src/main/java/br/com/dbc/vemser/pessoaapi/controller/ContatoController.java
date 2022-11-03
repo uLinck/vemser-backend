@@ -46,19 +46,19 @@ public class ContatoController {
             }
     )
 
-//    @GetMapping("/{byIdPessoa}")
-//    public List<ContatoDTO> listByIdPessoa(@PathVariable("byIdPessoa") Integer byIdPessoa) {
-//        return contatoService.listByIdPessoa(byIdPessoa);
-//    }
-//
-//    @Operation(summary = "adicionar Contato", description = "Adiciona um contato no banco")
-//    @ApiResponses(
-//            value = {
-//                    @ApiResponse(responseCode = "200", description = "Contato adicionado com sucesso"),
-//                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-//                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-//            }
-//    )
+    @GetMapping("/{byIdPessoa}")
+    public List<ContatoDTO> listByIdPessoa(@PathVariable("byIdPessoa") Integer byIdPessoa) {
+        return contatoService.listByIdPessoa(byIdPessoa);
+    }
+
+    @Operation(summary = "adicionar Contato", description = "Adiciona um contato no banco")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Contato adicionado com sucesso"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
 
     @PostMapping
     public ResponseEntity<ContatoDTO> create(@Valid @RequestBody ContatoCreateDTO contato) {

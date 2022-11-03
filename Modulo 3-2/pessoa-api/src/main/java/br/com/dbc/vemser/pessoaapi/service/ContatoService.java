@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -54,14 +55,14 @@ public class ContatoService {
         log.info("Contato Deletado com sucesso!");
     }
 
-//    public List<ContatoDTO> listByIdPessoa(Integer idPessoa) {
-//        List<ContatoEntity> contatoEntityRecuperado = contatoRepository.findAll().stream()
-//                .filter(pessoa -> pessoa.getIdPessoa().equals(idPessoa))
-//                .toList();
-//        return contatoEntityRecuperado.stream()
-//                .map(contato -> objectMapper.convertValue(contatoEntityRecuperado, ContatoDTO.class))
-//                .collect(Collectors.toList());
-//    }
+    public List<ContatoDTO> listByIdPessoa(Integer idPessoa) {
+        List<ContatoEntity> contatoEntityRecuperado = contatoRepository.findAll().stream()
+                .filter(pessoa -> pessoa.getIdPessoa().equals(idPessoa))
+                .toList();
+        return contatoEntityRecuperado.stream()
+                .map(contato -> objectMapper.convertValue(contatoEntityRecuperado, ContatoDTO.class))
+                .collect(Collectors.toList());
+    }
 
     private ContatoEntity findById(Integer idContato) throws RegraDeNegocioException {
         ContatoEntity contatoEntityRecuperado = contatoRepository.findById(idContato)

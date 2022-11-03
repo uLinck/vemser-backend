@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.entity.classes;
 
+import br.com.dbc.vemser.pessoaapi.entity.DescricaoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.pk.FilmePK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -20,8 +21,9 @@ public class PessoaFilmeEntity {
 
     @Column(name = "dt_assistido")
     private LocalDate dtAssistido;
+    @Embedded
     @Column(name = "descricao")
-    private String descricao;
+    private DescricaoEntity descricao;
     @Column(name = "nota_pessoa")
     private int notaPessoa;
 

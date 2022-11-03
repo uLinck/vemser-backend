@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -34,11 +35,11 @@ public class EnderecoService {
                 .orElseThrow(() -> new RegraDeNegocioException("Não encontrado"));
     }
 
-//    public List<EnderecoDTO> listByIdPessoa(Integer idPessoa) {
-//        return list().stream()
-//                .filter(endereco -> endereco.getIdPessoa().equals(idPessoa))
-//                .collect(Collectors.toList());
-//    }
+    public List<EnderecoDTO> listByIdPessoa(Integer idPessoa) {
+        return list().stream()
+                .filter(endereco -> endereco.getIdPessoa().equals(idPessoa))
+                .collect(Collectors.toList());
+    }
 
     public EnderecoDTO create(EnderecoCreateDTO endereco) {
         EnderecoEntity e = objectMapper.convertValue(endereco, EnderecoEntity.class);

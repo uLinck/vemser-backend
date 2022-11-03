@@ -1,9 +1,11 @@
 package br.com.dbc.vemser.pessoaapi.dto.contato;
 
+import br.com.dbc.vemser.pessoaapi.entity.DescricaoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.enums.TipoContato;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import javax.persistence.Embedded;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,6 +26,7 @@ public class ContatoCreateDTO {
     @NotNull
     @NotBlank
     @Schema(description = "Descrição")
-    private String descricao;
+    @Embedded
+    private DescricaoEntity descricao;
 
 }

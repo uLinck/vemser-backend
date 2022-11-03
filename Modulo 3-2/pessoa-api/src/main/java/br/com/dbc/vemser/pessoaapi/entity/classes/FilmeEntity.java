@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.entity.classes;
 
+import br.com.dbc.vemser.pessoaapi.entity.DescricaoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.enums.TipoFilme;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,8 +22,9 @@ public class FilmeEntity {
     @SequenceGenerator(name = "FILME_SEQ", sequenceName = "seq_filme", allocationSize = 1)
     @Column(name = "id_filme")
     private int idFilme;
+    @Embedded
     @Column(name = "descricao")
-    private String descricao;
+    private DescricaoEntity descricao;
     @Column(name = "nota")
     private int nota;
     @Column(name = "tipo")
