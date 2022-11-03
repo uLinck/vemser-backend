@@ -1,9 +1,11 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
-import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.dto.lists.ListPessoaContatoDTO;
+import br.com.dbc.vemser.pessoaapi.dto.lists.ListPessoaEnderecoDTO;
+import br.com.dbc.vemser.pessoaapi.dto.lists.ListPessoaFilmeDTO;
+import br.com.dbc.vemser.pessoaapi.dto.pessoa.PessoaCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.pessoa.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
-import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -52,6 +54,20 @@ public class PessoaController {
 //    public List<PessoaDTO> listByName(@RequestParam("nome") String nome) {
 //        return pessoaService.listByName(nome);
 //    }
+
+    @GetMapping("/listar-com-enderecos")
+    public List<ListPessoaEnderecoDTO> listWitchEndereco(@Valid @RequestParam(value = "idPessoa", required = false) Integer idPessoa) throws RegraDeNegocioException {
+        return pessoaService.listWithEndereco(idPessoa);
+    }
+    @GetMapping("/listar-com-contatos")
+    public List<ListPessoaContatoDTO> listWitchContato(@Valid @RequestParam(value = "idPessoa", required = false) Integer idPessoa) {
+        return pessoaService.listWithContato(idPessoa);
+    }
+    @GetMapping("/listar-com-filme")
+    public List<ListPessoaFilmeDTO> listWitchFilme(@Valid @RequestParam(value = "idPessoa", required = false) Integer idPessoa) throws RegraDeNegocioException {
+        return pessoaService.listWithFilme(idPessoa);
+    }
+
 
     @Operation(summary = "atualizar pessoa", description = "Atualiza uma pessoa do banco")
     @ApiResponses(

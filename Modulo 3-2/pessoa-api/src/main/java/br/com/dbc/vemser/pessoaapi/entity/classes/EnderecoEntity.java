@@ -1,8 +1,14 @@
-package br.com.dbc.vemser.pessoaapi.entity;
+package br.com.dbc.vemser.pessoaapi.entity.classes;
 
-import lombok.*;
+import br.com.dbc.vemser.pessoaapi.entity.enums.TipoEndereco;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,4 +46,9 @@ public class EnderecoEntity {
 
     @Column(name = "pais")
     private String pais;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "enderecos")
+    private Set<PessoaEntity> pessoas;
+
 }

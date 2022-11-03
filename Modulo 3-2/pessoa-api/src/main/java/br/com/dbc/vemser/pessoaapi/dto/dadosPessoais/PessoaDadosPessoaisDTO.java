@@ -1,9 +1,8 @@
-package br.com.dbc.vemser.pessoaapi.dto;
+package br.com.dbc.vemser.pessoaapi.dto.dadosPessoais;
 
+import br.com.dbc.vemser.pessoaapi.dto.pessoa.Sexo;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -11,7 +10,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PessoaDadosPessoaisDTO{
 
 

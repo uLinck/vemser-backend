@@ -1,8 +1,9 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
-import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
-import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
+
+import br.com.dbc.vemser.pessoaapi.dto.endereco.EnderecoCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.endereco.EnderecoDTO;
+import br.com.dbc.vemser.pessoaapi.entity.classes.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -39,7 +39,6 @@ public class EnderecoService {
 //                .filter(endereco -> endereco.getIdPessoa().equals(idPessoa))
 //                .collect(Collectors.toList());
 //    }
-
 
     public EnderecoDTO create(EnderecoCreateDTO endereco) {
         EnderecoEntity e = objectMapper.convertValue(endereco, EnderecoEntity.class);

@@ -1,16 +1,23 @@
-package br.com.dbc.vemser.pessoaapi.dto;
+package br.com.dbc.vemser.pessoaapi.dto.endereco;
 
-import br.com.dbc.vemser.pessoaapi.entity.TipoEndereco;
+import br.com.dbc.vemser.pessoaapi.entity.enums.TipoEndereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
-public class EnderecoCreateDTO {
+;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class EnderecoCreateDTO {
+    @JsonIgnore
     @Schema(description = "id da pessoa")
     private Integer idPessoa;
     @NotNull(message = "O tipo do endereço não pode ser nulo!")

@@ -2,7 +2,7 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 
 import br.com.dbc.vemser.pessoaapi.client.DadosPessoaisClient;
-import br.com.dbc.vemser.pessoaapi.dto.DadosPessoaisDTO;
+import br.com.dbc.vemser.pessoaapi.dto.dadosPessoais.DadosPessoaisDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

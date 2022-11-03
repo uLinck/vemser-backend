@@ -1,8 +1,8 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
-import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
-import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
+import br.com.dbc.vemser.pessoaapi.dto.pessoa.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.entity.classes.EnderecoEntity;
+import br.com.dbc.vemser.pessoaapi.entity.classes.PessoaEntity;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;

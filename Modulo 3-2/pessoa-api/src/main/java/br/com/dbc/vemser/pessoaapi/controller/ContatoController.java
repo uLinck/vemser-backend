@@ -1,7 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
-import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
+import br.com.dbc.vemser.pessoaapi.dto.contato.ContatoCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.contato.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,6 +1,11 @@
-package br.com.dbc.vemser.pessoaapi.entity;
+package br.com.dbc.vemser.pessoaapi.entity.classes;
 
-import lombok.*;
+import br.com.dbc.vemser.pessoaapi.entity.enums.TipoContato;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -17,7 +22,11 @@ public class ContatoEntity {
     @Column(name = "id_contato")
     private Integer idContato;
 
+    @Column(name = "id_pessoa", insertable = false, updatable = false)
+    private Integer idPessoa;
+
     @Column(name = "tipo")
+    @Enumerated(EnumType.ORDINAL)
     private TipoContato tipoContato; //RESIDENCIAL(1)
 
     @Column(name = "numero")
@@ -25,4 +34,9 @@ public class ContatoEntity {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoa;
 }

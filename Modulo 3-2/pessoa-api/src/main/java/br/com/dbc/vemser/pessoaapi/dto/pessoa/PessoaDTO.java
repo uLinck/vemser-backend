@@ -1,10 +1,14 @@
-package br.com.dbc.vemser.pessoaapi.dto;
+package br.com.dbc.vemser.pessoaapi.dto.pessoa;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
-@Data
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class PessoaDTO extends PessoaCreateDTO {
 
     @NotEmpty
