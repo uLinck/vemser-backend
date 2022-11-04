@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
+import br.com.dbc.vemser.pessoaapi.dto.PessoaReportDTO;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
@@ -7,6 +8,7 @@ import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -37,6 +39,11 @@ public class ConsultasController {
     @GetMapping("/{findByDataNasc}")
     public List<PessoaEntity> findByDataNascimento(LocalDate inicio, LocalDate fim) {
         return pessoaRepository.findByDataNascimentoBetween(inicio, fim);
+    }
+
+    @GetMapping("/listar-report/{idPessoa}")
+    public List<PessoaReportDTO> listReportDTO(@RequestParam(value = "idPessoa", required = false) Integer idPessoa) {
+       return pessoaRepository.listRelatorioPessoa(idPessoa);
     }
 
 

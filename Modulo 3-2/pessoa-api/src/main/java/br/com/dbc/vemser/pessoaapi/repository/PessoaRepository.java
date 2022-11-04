@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.repository;
 
+import br.com.dbc.vemser.pessoaapi.dto.PessoaReportDTO;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PessoaEntity;
 import feign.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,4 +36,29 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
             "   from pessoa p " +
             "   join p.contatos c")
     List<PessoaEntity> recuperarPessoasQueTemContratoComercial();
+
+    @Query(" select new br.com.dbc.vemser.pessoaapi.dto.PessoaReportDTO(" +
+            " p.idPessoa," +
+            " p.nome," +
+            " p.email," +
+            " c.numero," +
+            " e.cep, " +
+            " e.cidade, " +
+            " e.estado, " +
+            " e.pais, " +
+            " pe.petInformacoes.nome, " +
+            " f.filme.descricao, " +
+            " f.descricao, " +
+            " f.dtAssistido, " +
+            " f.notaPessoa, " +
+            " f.filme.nota " + // pessoaFilmeEntity - filmeEntity - nota
+            ")" +
+            "  from pessoa p " +
+            " left join p.contatos c " +
+            " left join p.enderecos e " +
+            " left join p.pet pe " +
+            " left join p.filmes f " +
+            " where (:idPessoa is null or p.idPessoa = :idPessoa)")
+    List<PessoaReportDTO> listRelatorioPessoa(Integer idPessoa);
+
 }
