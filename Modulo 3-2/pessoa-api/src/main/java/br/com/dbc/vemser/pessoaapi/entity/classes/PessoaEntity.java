@@ -44,10 +44,7 @@ public class PessoaEntity {
     private Set<ContatoEntity> contatos;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "Pessoa_x_Pessoa_Endereco",
-            joinColumns = @JoinColumn(name = "id_pessoa"),
-            inverseJoinColumns = @JoinColumn(name = "id_endereco"))
+    @ManyToMany(mappedBy = "pessoas", fetch = FetchType.LAZY)
     private Set<EnderecoEntity> enderecos;
 
     @JsonIgnore

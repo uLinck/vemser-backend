@@ -1,6 +1,5 @@
 package br.com.dbc.vemser.pessoaapi.entity.classes;
 
-import br.com.dbc.vemser.pessoaapi.entity.enums.TipoPet;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,15 +23,12 @@ public class PetEntity {
     @Column(name = "id_pet")
     private Integer idPet;
 
+    @JsonIgnore
     @Column(name = "id_pessoa", insertable = false, updatable = false)
     private Integer idPessoa;
 
-    @Column(name = "nome")
-    private String nome;
-
-    @Column(name = "tipo")
-    @Enumerated(EnumType.ORDINAL)
-    private TipoPet tipo;
+    @Embedded
+    private PetInformacoes petInformacoes;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

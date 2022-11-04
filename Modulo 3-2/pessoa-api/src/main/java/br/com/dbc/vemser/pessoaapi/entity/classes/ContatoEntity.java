@@ -1,6 +1,5 @@
 package br.com.dbc.vemser.pessoaapi.entity.classes;
 
-import br.com.dbc.vemser.pessoaapi.entity.DescricaoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.enums.TipoContato;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -33,9 +32,8 @@ public class ContatoEntity {
     @Column(name = "numero")
     private String numero;
 
-    @Embedded
     @Column(name = "descricao")
-    private DescricaoEntity descricao;
+    private String descricao;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

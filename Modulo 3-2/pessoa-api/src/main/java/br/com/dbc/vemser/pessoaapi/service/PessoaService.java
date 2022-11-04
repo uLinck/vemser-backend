@@ -53,6 +53,30 @@ public class PessoaService {
         return listaPessoasComEnderecos;
     }
 
+    public List<ListPessoaFilmeDTO> listWithFilme(Integer idPessoa) throws RegraDeNegocioException {
+        if (idPessoa != null) {
+            return pessoaRepository.findById(idPessoa)
+                    .map(pessoaEntity -> mapPessoaFilmesDTO(pessoaEntity))
+                    .stream()
+                    .toList();
+        }
+        return pessoaRepository.findAll()
+                .stream()
+                .map(pessoaEntity -> {
+                    return mapPessoaFilmesDTO(pessoaEntity);
+                })
+                .toList();
+    }
+    private ListPessoaFilmeDTO mapPessoaFilmesDTO(PessoaEntity pessoaEntity) {
+        ListPessoaFilmeDTO pessoaFilmeDTO = objectMapper.convertValue(pessoaEntity, ListPessoaFilmeDTO.class);
+        pessoaFilmeDTO.setFilmes(pessoaEntity.getFilmes()
+                .stream()
+                .map(filmeDTO -> objectMapper.convertValue(filmeDTO, FilmeAvaliadoDTO.class))
+                .collect(Collectors.toSet()));
+        return pessoaFilmeDTO;
+    }
+
+
     public List<ListPessoaContatoDTO> listWithContato(Integer idPessoa) {
         if (idPessoa != null) {
             return pessoaRepository.findByIdPessoa(idPessoa).stream()
@@ -64,27 +88,28 @@ public class PessoaService {
                 .toList();
     }
 
-    public List<ListPessoaFilmeDTO> listWithFilme(Integer idPessoa) throws RegraDeNegocioException {
-        List<ListPessoaFilmeDTO> list = new ArrayList<>();
-        if (idPessoa != null) {
-            PessoaEntity pessoaEntity = findById(idPessoa);
-            ListPessoaFilmeDTO listPessoaFilmeDTO = objectMapper.convertValue(pessoaEntity, ListPessoaFilmeDTO.class);
-            listPessoaFilmeDTO.setFilmes(pessoaEntity.getFilmes().stream()
-                    .map(filmes -> objectMapper.convertValue(filmes, FilmeAvaliadoDTO.class))
-                    .collect(Collectors.toSet()));
-            list.add(listPessoaFilmeDTO);
-        } else {
-            list.addAll(pessoaRepository.findAll().stream()
-                    .map(pessoa -> {
-                        ListPessoaFilmeDTO listPessoaFilmeDTO = objectMapper.convertValue(pessoa, ListPessoaFilmeDTO.class);
-                        listPessoaFilmeDTO.setFilmes(pessoa.getFilmes().stream()
-                                .map(filmes -> objectMapper.convertValue(filmes, FilmeAvaliadoDTO.class))
-                                .collect(Collectors.toSet()));
-                        return listPessoaFilmeDTO;
-                    }).toList());
-        }
-        return list;
-    }
+                // Antigo método de listar por filme que havia feito
+//    public List<ListPessoaFilmeDTO> listWithFilme(Integer idPessoa) throws RegraDeNegocioException {
+//        List<ListPessoaFilmeDTO> list = new ArrayList<>();
+//        if (idPessoa != null) {
+//            PessoaEntity pessoaEntity = findById(idPessoa);
+//            ListPessoaFilmeDTO listPessoaFilmeDTO = objectMapper.convertValue(pessoaEntity, ListPessoaFilmeDTO.class);
+//            listPessoaFilmeDTO.setFilmes(pessoaEntity.getFilmes().stream()
+//                    .map(filmes -> objectMapper.convertValue(filmes, FilmeAvaliadoDTO.class))
+//                    .collect(Collectors.toSet()));
+//            list.add(listPessoaFilmeDTO);
+//        } else {
+//            list.addAll(pessoaRepository.findAll().stream()
+//                    .map(pessoa -> {
+//                        ListPessoaFilmeDTO listPessoaFilmeDTO = objectMapper.convertValue(pessoa, ListPessoaFilmeDTO.class);
+//                        listPessoaFilmeDTO.setFilmes(pessoa.getFilmes().stream()
+//                                .map(filmes -> objectMapper.convertValue(filmes, FilmeAvaliadoDTO.class))
+//                                .collect(Collectors.toSet()));
+//                        return listPessoaFilmeDTO;
+//                    }).toList());
+//        }
+//        return list;
+//    }
 
     public PessoaDTO create(PessoaCreateDTO pessoa) {
         PessoaEntity p = objectMapper.convertValue(pessoa, PessoaEntity.class);

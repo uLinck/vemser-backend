@@ -1,6 +1,5 @@
 package br.com.dbc.vemser.pessoaapi.dto.filme;
 
-import br.com.dbc.vemser.pessoaapi.entity.DescricaoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.pk.FilmePK;
 import lombok.*;
 
@@ -18,8 +17,7 @@ public class FilmeAvaliadoDTO {
     @NotNull
     private Integer notaPessoa;
     @NotNull
-    @Embedded
-    private DescricaoEntity descricao;
+    private String descricao;
     @NotNull
     private LocalDate dtAssistido;
 }

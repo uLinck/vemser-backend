@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,6 +46,7 @@ public class PetService {
         return petDto;
 
     }
+
     //UPDATE / PUT
     public PetDTO update(Integer id,
                          PetCreateDTO pet) throws RegraDeNegocioException {
@@ -57,18 +59,20 @@ public class PetService {
         log.info("Atualizando pet...");
 
         // Chamando o update (passando objeto convertido na linha anterior)
-        petEntityResgatado.setTipo(pet.getTipo());
-        petEntityResgatado.setNome(pet.getNome());
+        petEntityResgatado.setPetInformacoes(pet.getPetInformacoes());
         petEntityResgatado.setPessoa(pessoaRecuperada);
-        pessoaRecuperada.setPet((Set<PetEntity>) petEntityResgatado);
+        Set<PetEntity> petList = new HashSet<>();
+        petList.add(petEntityResgatado);
+        pessoaRecuperada.setPet(petList);
         pessoaRepository.save(pessoaRecuperada);
 
-        if (! pessoaRecuperada.getIdPessoa() .equals(pessoaEntity.getIdPessoa())) {
+        if (!pessoaRecuperada.getIdPessoa().equals(pessoaEntity.getIdPessoa())) {
             pessoaRepository.save(pessoaEntity);
         }
         PetEntity petEntity = petRepository.save(petEntityResgatado);
         return objectMapper.convertValue(petEntity, PetDTO.class);
     }
+
     //DELETE
     public void delete(Integer id) throws RegraDeNegocioException {
 
@@ -80,6 +84,7 @@ public class PetService {
         petRepository.delete(petEntityResgatado);
 
     }
+
     //ENCONTRA PET PELO ID
     private PetEntity findPetById(Integer id) throws RegraDeNegocioException {
         return petRepository.findById(id)

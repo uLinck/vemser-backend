@@ -141,7 +141,7 @@ public class EmailService {
         return html;
     }
 
-    public void sendCreateEnderecoEmail(PessoaDTO pessoa, EnderecoEntity enderecoEntity) {
+    public void sendCreateEnderecoEmail(PessoaEntity pessoa, EnderecoEntity enderecoEntity) {
 
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
@@ -159,7 +159,7 @@ public class EmailService {
         }
     }
 
-    public void sendUpdateEnderecoEmail(PessoaDTO pessoa, EnderecoEntity enderecoEntity) {
+    public void sendUpdateEnderecoEmail(PessoaEntity pessoa, EnderecoEntity enderecoEntity) {
 
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         try {
