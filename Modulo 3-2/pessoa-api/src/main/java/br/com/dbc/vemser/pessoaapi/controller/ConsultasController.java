@@ -1,9 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
-import br.com.dbc.vemser.pessoaapi.dto.PessoaReportDTO;
+import br.com.dbc.vemser.pessoaapi.dto.pessoa.PessoaReportDTO;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PessoaEntity;
-import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
-import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

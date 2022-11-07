@@ -5,6 +5,7 @@ import br.com.dbc.vemser.pessoaapi.entity.enums.TipoPet;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,8 +23,7 @@ public class PetCreateDTO {
     @Schema(description = "id da pessoa")
     private Integer idPessoa;
 
-    @Embedded
-    private PetInformacoes petInformacoes;
+    private PetInformacoesDTO petInformacoes;
 
 
 }

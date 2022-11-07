@@ -2,8 +2,10 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.pet.PetCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.pet.PetDTO;
+import br.com.dbc.vemser.pessoaapi.dto.pet.PetInformacoesDTO;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PetEntity;
+import br.com.dbc.vemser.pessoaapi.entity.classes.PetInformacoes;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.dbc.vemser.pessoaapi.repository.PetRepository;
@@ -25,7 +27,7 @@ public class PetService {
     private final PessoaRepository pessoaRepository;
     private final ObjectMapper objectMapper;
 
-    //lista todos
+    //listar todos
     public List<PetDTO> list() {
         return petRepository.findAll().stream()
                 .map(pet -> objectMapper.convertValue(pet, PetDTO.class))
@@ -34,15 +36,15 @@ public class PetService {
     // create
     public PetDTO create(Integer idPessoa, PetCreateDTO petDTO) throws RegraDeNegocioException {
 
-        PessoaEntity pessoaRecuperada = pessoaService.findById(idPessoa); //recuperando pai/mãe do pet
+        PessoaEntity pessoaRecuperada = pessoaService.findById(idPessoa); // recuperando pai/mãe do pet
 
-        PetEntity petEntity = objectMapper.convertValue(petDTO, PetEntity.class); //set agora é pelo relacionamento
+        PetEntity petEntity = objectMapper.convertValue(petDTO, PetEntity.class); // set agora é pelo relacionamento
         petEntity.setPessoa(pessoaRecuperada);
 
         PetEntity petCriado = petRepository.save(petEntity);
         log.info("Adicionando pet...");
 
-        PetDTO petDto = objectMapper.convertValue(petCriado, PetDTO.class); //retorno pro controller após operação
+        PetDTO petDto = objectMapper.convertValue(petCriado, PetDTO.class); // retorno pro controller após operação
         return petDto;
 
     }
@@ -55,11 +57,10 @@ public class PetService {
         PessoaEntity pessoaEntity = petEntityResgatado.getPessoa();
         pessoaEntity.setPet(null);
         PessoaEntity pessoaRecuperada = pessoaService.findById(pet.getIdPessoa());
-
         log.info("Atualizando pet...");
 
         // Chamando o update (passando objeto convertido na linha anterior)
-        petEntityResgatado.setPetInformacoes(pet.getPetInformacoes());
+        petEntityResgatado.setPetInformacoes(objectMapper.convertValue(pet.getPetInformacoes(), PetInformacoes.class));
         petEntityResgatado.setPessoa(pessoaRecuperada);
         Set<PetEntity> petList = new HashSet<>();
         petList.add(petEntityResgatado);
