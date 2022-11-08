@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Atividade1 {
     public static void main(String[] args) {
-       Scanner scan = new Scanner(System.in);
-        System.out.println("Digite a data do seu aniversário no formato dd/mm/yyyy");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite a data do seu aniversário no formato dd/mm/yyyy:");
         String dataAniver = scan.nextLine();
 
         LocalDate dataFormatada = LocalDate.parse(dataAniver, DateTimeFormatter.ofPattern("dd/MM/yyyy")).withYear(LocalDate.now().getYear());
