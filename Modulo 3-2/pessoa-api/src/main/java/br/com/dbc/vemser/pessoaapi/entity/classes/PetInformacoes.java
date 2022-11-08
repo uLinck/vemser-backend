@@ -14,13 +14,14 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Embeddable
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PetInformacoes {
+public class PetInformacoes implements Serializable {
 
     @Schema(description = "nome do pet")
     @NotBlank(message = "O nome do pet é obrigatório")

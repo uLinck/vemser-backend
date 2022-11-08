@@ -1,7 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.dto.lists;
 
+import br.com.dbc.vemser.pessoaapi.dto.contato.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.pessoa.PessoaDTO;
-import br.com.dbc.vemser.pessoaapi.entity.classes.ContatoEntity;
 import lombok.*;
 
 import java.util.Set;
@@ -11,5 +11,5 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ListPessoaContatoDTO extends PessoaDTO {
-   private Set<ContatoEntity> contatos;
+   private Set<ContatoDTO> contatos;
 }

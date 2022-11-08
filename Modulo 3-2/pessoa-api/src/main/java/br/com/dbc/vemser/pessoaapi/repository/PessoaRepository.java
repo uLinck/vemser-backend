@@ -47,7 +47,7 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
             " e.estado, " +
             " e.pais, " +
             " pe.petInformacoes.nome, " +
-            " f.filme.descricao, " +
+            " f.filme.descricao, " + // pessoaFilmeEntity - filmeEntity - descricao
             " f.descricao, " +
             " f.dtAssistido, " +
             " f.notaPessoa, " +
