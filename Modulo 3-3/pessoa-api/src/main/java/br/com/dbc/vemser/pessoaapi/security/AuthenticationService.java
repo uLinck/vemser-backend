@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class AuthenticationService implements UserDetailsService {
 
-    private UsuarioLoginService usuarioLoginService;
+    private final UsuarioLoginService usuarioLoginService;
 
     @Override
     public UserDetails loadUserByUsername(String loginUsername) throws UsernameNotFoundException {
