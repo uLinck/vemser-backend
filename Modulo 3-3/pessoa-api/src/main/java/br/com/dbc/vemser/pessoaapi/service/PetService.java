@@ -2,7 +2,6 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.pet.PetCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.pet.PetDTO;
-import br.com.dbc.vemser.pessoaapi.dto.pet.PetInformacoesDTO;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PetEntity;
 import br.com.dbc.vemser.pessoaapi.entity.classes.PetInformacoes;

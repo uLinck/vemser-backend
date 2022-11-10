@@ -1,37 +1,66 @@
 package br.com.dbc.vemser.pessoaapi.security;
 
-import br.com.dbc.vemser.pessoaapi.entity.classes.UsuarioEntity;
-import br.com.dbc.vemser.pessoaapi.service.UsuarioService;
+import br.com.dbc.vemser.pessoaapi.entity.classes.UsuarioLoginEntity;
+import br.com.dbc.vemser.pessoaapi.service.UsuarioLoginService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.util.Base64;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
 
 public class TokenService {
 
-private final UsuarioService usuarioService;
+    @Value("${jwt.secret}")
+    private String secret;
 
-    public String getToken(UsuarioEntity usuarioEntity) {
-        // FIXME por meio do usuário, gerar um token
-        String tokenTexto = usuarioEntity.getLogin() + ";" + usuarioEntity.getSenha();
-        String token = Base64.getEncoder().encodeToString(tokenTexto.getBytes());
-        return token;
+    @Value("${jwt.expiration}")
+    private String expiration;
+
+private final UsuarioLoginService usuarioLoginService;
+
+    public String getToken(UsuarioLoginEntity usuarioEntity) {
+        LocalDateTime dataAtualLD = LocalDateTime.now();
+        Date dataAtual = Date.from(dataAtualLD.atZone(ZoneId.systemDefault()).toInstant());
+        LocalDateTime dataExpLD = dataAtualLD.plusDays(Long.parseLong(expiration));
+        Date dataExp = Date.from(dataExpLD.atZone(ZoneId.systemDefault()).toInstant());
+        return Jwts.builder()
+                .setIssuer("vemser-api")
+                .claim(Claims.ID, usuarioEntity.getIdUsuario().toString())
+                .setIssuedAt(dataAtual)
+                .setExpiration(dataExp)
+                .signWith(SignatureAlgorithm.HS256, secret) // mudar para a vm args
+                .compact();
     }
 
-    public Optional<UsuarioEntity> isValid(String token) {
-        // FIXME validar se o token é válido e retornar o usuário se for válido
+    public UsernamePasswordAuthenticationToken isValid(String token) {
         if(token == null) {
-            return Optional.empty();
+            return null;
         }
-        token = token.replace("Bearer ", ""); // token, example: dXZfbFgEH=
+        token = token.replace("Bearer ", "");
 
-        byte[] decodedBytes = Base64.getUrlDecoder().decode(token);
-        String decoded = new String(decodedBytes);
-        String[] split = decoded.split(";");
-        return usuarioService.findByLoginAndSenha(split[0], split[1]);
+        Claims keys = Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+
+
+        String idLoginUsuario = keys.get(Claims.ID, String.class);
+
+        UsernamePasswordAuthenticationToken dtoSecurityObject =
+                new UsernamePasswordAuthenticationToken(idLoginUsuario,
+                        null,
+                        Collections.emptyList());
+
+        return dtoSecurityObject;
     }
 }

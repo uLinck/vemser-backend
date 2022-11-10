@@ -1,6 +1,8 @@
 package br.com.dbc.vemser.pessoaapi.dto.pessoa;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 

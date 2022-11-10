@@ -1,6 +1,5 @@
 package br.com.dbc.vemser.pessoaapi.security;
 
-import br.com.dbc.vemser.pessoaapi.entity.classes.UsuarioEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,8 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Optional;
+
+import static org.springframework.cloud.openfeign.security.OAuth2FeignRequestInterceptor.BEARER;
 
 @RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
@@ -21,19 +20,24 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        // FIXME recuperar token do header
-        String headerAuth = request.getHeader("Authorization");
-        Optional<UsuarioEntity> isValid = tokenService.isValid(headerAuth);
 
-        if(isValid.isPresent()) {
-            UsuarioEntity usuarioEntity = isValid.get();
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(usuarioEntity.getLogin(),
-                    usuarioEntity.getSenha(), Collections.emptyList());
-            SecurityContextHolder.getContext().setAuthentication(token);
-        } else {
-            SecurityContextHolder.getContext().setAuthentication(null);
-        }
+        String token = getTokenFromHeader(request);
+
+        UsernamePasswordAuthenticationToken dtoSecurity = tokenService.isValid(token);
+
+
+        SecurityContextHolder.getContext().setAuthentication(dtoSecurity); // se for null, ele vai definir como null,
+        // e se for diferente de null, ele define como ele mesmo.
 
         filterChain.doFilter(request, response);
     }
+
+    private String getTokenFromHeader(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if (token == null) {
+            return null;
+        }
+        return token.replace(BEARER, "");
+    }
+
 }
