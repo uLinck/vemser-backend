@@ -1,7 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.security;
 
 import br.com.dbc.vemser.pessoaapi.entity.classes.UsuarioLoginEntity;
-import br.com.dbc.vemser.pessoaapi.service.UsuarioLoginService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -25,8 +24,6 @@ public class TokenService {
 
     @Value("${jwt.expiration}")
     private String expiration;
-
-private final UsuarioLoginService usuarioLoginService;
 
     public String getToken(UsuarioLoginEntity usuarioEntity) {
         LocalDateTime dataAtualLD = LocalDateTime.now();
