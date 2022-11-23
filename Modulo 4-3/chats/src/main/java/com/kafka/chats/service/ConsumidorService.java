@@ -18,6 +18,11 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 @RequiredArgsConstructor
 public class ConsumidorService {
+
+    private static final String ROXO = "\u001B[35m";
+
+    private static final String RESET = "\u001B[0m";
+
     private final ObjectMapper objectMapper;
 
     @KafkaListener(
@@ -31,7 +36,7 @@ public class ConsumidorService {
                                            @Header(KafkaHeaders.OFFSET) Long offset) throws JsonProcessingException {
         MensagemDTO myMessage = objectMapper.readValue(mensagem, MensagemDTO.class);
 
-        log.info("{} {}: {}",
+        log.info(ROXO+"{} {}: {}"+RESET,
                 myMessage.getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss")),
                 myMessage.getUsuario(),
                 myMessage.getMensagem());
