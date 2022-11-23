@@ -17,7 +17,7 @@ public class ProdutorController {
     private final ProdutorService produtorService;
 
     @PostMapping("/send-to")
-    public void sendTo(@RequestParam List<NomeChat> chats, @RequestBody MensagemDTO mensagem) throws JsonProcessingException {
+    public void sendTo(@RequestParam List<NomeChat> chats, @RequestParam String mensagem) throws JsonProcessingException {
             produtorService.enviarMensagem(chats, mensagem);
     }
 }

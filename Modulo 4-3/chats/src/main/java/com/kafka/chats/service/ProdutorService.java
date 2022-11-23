@@ -32,11 +32,13 @@ public class ProdutorService {
     @Value(value = "${spring.kafka.consumer.client-id}")
     private String usuario;
 
-    public void enviarMensagem(List<NomeChat> nomeChatList, MensagemDTO mensagem) throws JsonProcessingException {
-        mensagem.setUsuario(usuario);
-        mensagem.setDataCriacao(LocalDateTime.now());
+    public void enviarMensagem(List<NomeChat> nomeChatList, String mensagem) throws JsonProcessingException {
+        MensagemDTO mensagemDTO = new MensagemDTO();
+        mensagemDTO.setUsuario(usuario);
+        mensagemDTO.setMensagem(mensagem);
+        mensagemDTO.setDataCriacao(LocalDateTime.now());
 
-        String mensagemStr = objectMapper.writeValueAsString(mensagem);
+        String mensagemStr = objectMapper.writeValueAsString(mensagemDTO);
 
         for(NomeChat nome : nomeChatList) {
 
